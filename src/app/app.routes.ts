@@ -5,21 +5,35 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'auth/dashboard',
-    pathMatch: 'full',
+    redirectTo: 'panel',
+    pathMatch: 'full'
   },
 
   {
-    path: 'auth',
-    loadChildren: () =>
-      import('./authentication/auth.routes').then(
-        m => m.AUTH_ROUTES
-      ),
+    path: 'panel',
+    loadComponent: () =>
+      import('./panel/panel.component').then(m => m.PanelComponent)
   },
 
-  // página 404 (opcional)
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then(m => m.LoginComponent)
+  },
+
+
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./register/register.component').then(m => m.RegisterComponent)
+  },
+
+
   {
     path: '**',
-    redirectTo: 'auth/dashboard',
-  },
+    redirectTo: 'panel'
+  }
+
+
 ];
